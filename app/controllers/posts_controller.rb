@@ -1,6 +1,10 @@
 class PostsController < ApplicationController
 	before_action :find_post, only: [:edit, :update, :show, :delete]
 
+	before_filter :authorize
+
+	skip_before_filter :authorize, :only => [:index, :show]
+
 	# Show all blog posts
 	def index
 		@posts = Post.all
@@ -30,6 +34,11 @@ class PostsController < ApplicationController
 	end
 
 	def edit
+		if logged_in?
+			render :edit
+		else
+			redirect_to '/'
+		end
 	end
 
 	def update
