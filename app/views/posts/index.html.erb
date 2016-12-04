@@ -1,0 +1,28 @@
+<h1>All Posts!</h1>
+
+<% if logged_in? %>
+	<div>
+		<%= render "/posts/form" %>
+	</div>
+	<% else %>
+	<h4>Please login to post!</h4>
+<% end %>
+<br>
+<br>
+
+<h3>All Posts</h3>
+<div>
+	<ul>
+		<% @posts.each do |post| %>
+			<li>
+				<%= link_to "#{post.title}", post %>
+				<p>
+					<%= post.body %>
+				</p>
+				<p>
+					Author: <%= post.author.username %>
+				</p>
+			</li>
+		<% end %>
+	</ul>
+</div>
