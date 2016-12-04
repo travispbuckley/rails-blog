@@ -1,12 +1,15 @@
 class PostsController < ApplicationController
+	before_action :find_post, only: [:edit, :update, :show, :delete]
+
 	# Show all blog posts
 	def index
 		@posts = Post.all
+		@post = Post.new
 		# When called upon, rails will look for a folder in the views called posts, with an erb file called index.html.erb
 	end
 	# Show a single post '/posts/:id'
 	def show
-		@post = Post.find(params[:id])
+
 	end
 
 	# This is the GET route for a new post
@@ -24,6 +27,25 @@ class PostsController < ApplicationController
 			flash[:alert] = "Error creating new post!"
 			render :new
 		end
+	end
+
+	def edit
+	end
+
+	def update
+    if @post.update_attributes(post_params)
+      flash[:notice] = "Successfully updated post!"
+      redirect_to post_path(@post)
+    else
+      flash[:alert] = "Error updating post!"
+      render :edit
+    end		
+	end
+
+	private
+
+	def find_post
+		@post = Post.find(params[:id])
 	end
 
 	def post_params

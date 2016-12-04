@@ -1,0 +1,8 @@
+<h2>Edit post!</h2>
+<% if logged_in? %>
+	<% if current_user.id == @post.id %>
+		<%= render "/posts/form" %>
+	<% end %>	
+<% else %>
+	<h4>Please login to edit a post!</h4>
+<% end %>
