@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 	resources :posts, :comments
 		# This creates the 7 restful routes for the post controller, index, show, create, update, delete, etc
 	resources :users, only: [:new, :create, :show]
-	resources :sessions, only: [:new, :create, :destory]
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
 
 
 
