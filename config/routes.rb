@@ -8,6 +8,13 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
 
+  # you can nest routes to achieve a route like so:
+  	# '/admin/articles/:id'
+  	# namespace :admin do
+ 			# resources :articles, :comments
+		# end
+	# controller function would be in the admins controller
+
 
 
 end
