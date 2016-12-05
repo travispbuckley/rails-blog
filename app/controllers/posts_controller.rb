@@ -13,7 +13,12 @@ class PostsController < ApplicationController
 	end
 	# Show a single post '/posts/:id'
 	def show
-
+		@post = Post.find(params[:id])
+		if @post.valid?
+			render :show
+		else
+			redirect_to '/'
+		end
 	end
 
 	# This is the GET route for a new post

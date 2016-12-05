@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 			flash[:notice] = "User Signup Successful!"
 			redirect_to '/'
 		else
-			flash[:alert] = "Error updating post!"
+			flash[:alert] = "Error creating user"
 			render :new
 		end
 	end
