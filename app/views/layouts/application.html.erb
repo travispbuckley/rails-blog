@@ -5,7 +5,14 @@
 </head>
 	<body>
 		<nav>
-			<%= link_to("HOME", root_path) %>
+			<span><%= link_to("HOME", root_path) %></span>
+			<% if logged_in? %>
+				<p>Welcome, <%= link_to("#{current_user.username}", users_path) %></p>
+				<p>Logout</p>
+			<% else %>
+				<p><%= link_to("LOGIN", :controller => "sessions", :action => "new") %></p>
+				<p><%= link_to("Register", :controller => "users", :action => "new") %></p>
+			<% end %>
 		</nav>
 		<p class="notice"><%= notice %></p>
   	<p class="alert"><%= alert %></p>
